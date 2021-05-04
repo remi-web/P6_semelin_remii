@@ -1,0 +1,30 @@
+{
+  "name": "so-pekocko",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "snyk test"
+  },
+  "author": "remi",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
+    "crypto-js": "^4.0.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.10.1",
+    "jsonwebtoken": "^8.5.1",
+    "maskdata": "^1.1.4",
+    "mongo-mask": "^1.1.0",
+    "mongoose": "^5.12.4",
+    "mongoose-unique-validator": "^2.0.3",
+    "mongoose-validator": "^2.1.0",
+    "multer": "^1.4.2",
+    "password-validator": "^5.1.1"
+  },
+  "devDependencies": {
+    "snyk": "^1.576.0"
+  }
+}
