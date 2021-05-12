@@ -4,9 +4,12 @@ const mongoose = require('mongoose');
 const path = require('path')
 require ('dotenv').config();
 
+const helmet = require('helmet')
+
 const saucesRoutes = require('./routes/sauces')
 const userRoutes = require('./routes/user');
 const { db } = require('./models/Sauces');
+
 mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/${process.env.DB_COLLECTION}?retryWrites=true&w=majority`,
 { useNewUrlParser: true,
     useUnifiedTopology: true })
@@ -26,10 +29,11 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json());
 
+app.use(helmet())
+
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
 app.use('/api/sauces', saucesRoutes);
 app.use('/api/auth', userRoutes);
 
 module.exports = app;
-
