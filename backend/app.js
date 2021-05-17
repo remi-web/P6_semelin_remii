@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 const path = require('path')
 require ('dotenv').config();
 
+const bearerToken = require('express-bearer-token');
+
 const helmet = require('helmet')
 
 const saucesRoutes = require('./routes/sauces')

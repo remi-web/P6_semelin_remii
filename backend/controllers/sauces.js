@@ -39,6 +39,7 @@ exports.deleteSauce = (req, res, next) =>{
 
 exports.getOneSauce = (req, res, next) => {
     Sauce.findOne({ _id: req.params.id})
+    
       .then(sauce => res.status(200).json(sauce))
       .catch(error => res.status(404).json({ error }));
 };
@@ -55,6 +56,7 @@ exports.likedSauce = (req, res, next) => {
     Sauce.findOne({ _id: req.params.id})
       .then(sauce => {
         switch (req.body.like){
+          // si l'utilisateur aime la sauce
           case 1:
             Sauce.updateOne(
               {_id: req.params.id},
@@ -63,7 +65,8 @@ exports.likedSauce = (req, res, next) => {
             .catch(error => res.status(400).JSON({ error })
             );
           break
-
+          
+          // si l'utilisateur enlève son like ou son disLike
           case 0:
             const usersLiked = sauce.usersLiked
             usersLiked.forEach(userIdLiked => {
@@ -88,7 +91,7 @@ exports.likedSauce = (req, res, next) => {
               }       
             });
           break
-
+          //  Si l'utilisateur n'aime pas la sauce
           case -1:
             Sauce.updateOne(
               { _id: req.params.id},

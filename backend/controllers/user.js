@@ -2,6 +2,7 @@ const bcrypt = require ('bcrypt');
 const response = require('../app');
 const jwt = require('jsonwebtoken');
 
+// Seul les mots de passe fort sont validés
 const passWordValidate = require('../models/Validators')
 const validation = passWordValidate.passWordValidator
 
@@ -11,6 +12,7 @@ exports.signup = (req, res, next) => {
     let validate = validation.validate(req.body.password)
     if(validate === true){
         
+        // cryptage du mot de passe avant enregistrement dans la base de données
         bcrypt
             .hash(req.body.password, 10)
             .then((hash) => {
