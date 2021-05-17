@@ -2,24 +2,23 @@ const bcrypt = require ('bcrypt');
 const response = require('../app');
 const jwt = require('jsonwebtoken');
 
-// Seul les mots de passe fort sont validés
-const passWordValidate = require('../models/Validators')
-const validation = passWordValidate.passWordValidator
+const inputValidate = require('../models/Validators')
+const passwordValidate = inputValidate.passWordValidator
 
 const User = require('../models/Users');
  
 exports.signup = (req, res, next) => {
-    let validate = validation.validate(req.body.password)
+
+    let validate = passwordValidate.validate(req.body.password) // Seul les mots de passe fort sont validés
     if(validate === true){
-        
-        // cryptage du mot de passe avant enregistrement dans la base de données
         bcrypt
-            .hash(req.body.password, 10)
+            .hash(req.body.password, 10)      // cryptage du mot de passe 
             .then((hash) => {
                 const user = new User({
                     email: req.body.email,
                     password: hash
                 });
+                console.log(user)
                 user.save()
                     .then(() => res.status(201).json({ messsage: 'Utilisateur créé'}))
                     .catch(error => res.status(400).json({ error }));

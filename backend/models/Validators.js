@@ -4,13 +4,13 @@ const passwordValidator = require('password-validator')
 var schema = new passwordValidator();
 
     schema
-    .is().min(8)           // Minimum de 8 caractères
-    .is().max(100)         // Maximun 100 caractères
-    .has().uppercase()     // Au moins une majuscule
-    .has().lowercase()     // Au moins une minuscule
-    .has().digits(2)       // Au moins deux chiffres
-    .has().not().spaces()  // Pas d'espace
-    .is().not().oneOf(     // Mot de passes blaclistés
+    .is().min(8)           // Minimum length 8
+    .is().max(100)         // Maximum length 100
+    .has().uppercase()     // Must have uppercase letters
+    .has().lowercase()     // Must have lowercase letters
+    .has().digits(2)       // Must have at least 2 digits
+    .has().not().spaces()  // Should not have spaces
+    .is().not().oneOf(     // Blacklist these values
         ['Passw0rd', 'Password123','abcd123456','validPASS123']
     )
 
